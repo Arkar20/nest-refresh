@@ -13,20 +13,27 @@ export class AuthService {
   }
 
   findAll() {
-    return `This action returns all auth`;
+    return this.databaseService.user.findMany();
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} auth`;
+    return this.databaseService.user.findFirst({
+      where: {
+        id,
+      },
+    });
   }
 
   update(id: number, updateAuthDto: UpdateAuthDto) {
-    return `This action updates a #${id} auth`;
+    return this.databaseService.user.update({
+      where: { id },
+      data: updateAuthDto,
+    });
   }
 
   remove(id: number) {
-    return `This action removes a #${id} auth`;
+    return this.databaseService.user.delete({
+      where: { id },
+    });
   }
-
-  protected validateUser() {}
 }
